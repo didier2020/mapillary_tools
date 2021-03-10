@@ -266,7 +266,7 @@ def process_csv(
         )
         sys.exit(1)
 
-    column_indexes = map(lambda x: x - 1 if x else None, column_indexes)
+    column_indexes = list(map(lambda x: x - 1 if x else None, column_indexes))
 
     # checks for meta arguments if any
     meta_columns, meta_names, meta_types = validate_meta_data(
@@ -274,7 +274,7 @@ def process_csv(
     )
 
     # open and process csv
-    csv_data = read_csv(csv_path, delimiter=delimiter, header=header)
+    csv_data = list(read_csv(csv_path, delimiter=delimiter, header=header))
 
     # align by filename column if provided, otherwise align in order of image
     # names
